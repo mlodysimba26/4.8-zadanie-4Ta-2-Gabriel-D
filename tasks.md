@@ -12,9 +12,9 @@ Zadania odhaczane po weryfikacji (nie po napisaniu kodu).
 - [x] zadanie 1: Zapis notatki z nagłówkiem `## YYYY-MM-DD HH:mm — Tytuł` (kryterium 1) ✅
 - [x] zadanie 2: Blokada zapisu przy pustym tytule / samych spacjach (kryterium 2) ✅
 - [x] zadanie 3: Odwrócona chronologia — najnowszy wpis na początku pliku (kryterium 3) ✅
-- [x] zadanie 4: Poprawna obsługa polskich znaków diakrytycznych UTF-8 (kryterium 4) ✅
-- [x] zadanie 5: Trwałość danych — odczyt po ponownym uruchomieniu (kryterium 5) ✅
-- [x] zadanie 6: Obsługa błędu I/O bez awarii procesu (kryterium 6) ✅
+- [x] zadanie 4: Poprawna obsługa polskich znaków diakrytycznych UTF-8 (kryterium 4) ✅ — zweryfikowane 2026-11-19
+- [ ] zadanie 5: Trwałość danych — odczyt po ponownym uruchomieniu (kryterium 5)
+- [ ] zadanie 6: Obsługa błędu I/O bez awarii procesu (kryterium 6)
 
 ## Dokumentacja końcowa
 
