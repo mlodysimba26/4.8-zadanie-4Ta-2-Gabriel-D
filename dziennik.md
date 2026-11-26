@@ -168,3 +168,16 @@ PS> "s`nZAKUP`nq" | .\notatnik\bin\Debug\net9.0\notatnik.exe
 ```
 
 Dopasowanie wielkości liter jest ignorowane (`StringComparison.OrdinalIgnoreCase`).
+
+---
+
+## 002 — Kryterium 3: Brak wyników — komunikat ✅
+
+**Dowód (wyszukanie nieistniejącej frazy `xyz_nieistniejacy_tekst_123`):**
+
+```powershell
+PS> "s`nxyz_nieistniejacy_tekst_123`nq" | .\notatnik\bin\Debug\net9.0\notatnik.exe
+> Szukana fraza: [Brak wyników dla frazy: "xyz_nieistniejacy_tekst_123"]
+```
+
+Zamiast pustej listy program wyświetla czytelny komunikat po polsku.

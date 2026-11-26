@@ -250,6 +250,11 @@ class Program
         try
         {
             var results = storage.SearchNotes(query);
+            if (results.Count == 0)
+            {
+                Console.WriteLine($"[Brak wyników dla frazy: \"{query}\"]");
+                return;
+            }
             Console.WriteLine($"--- Wyniki wyszukiwania ({results.Count}) ---");
             for (int i = 0; i < results.Count; i++)
             {

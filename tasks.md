@@ -22,7 +22,7 @@ Zadania odhaczane po weryfikacji (nie po napisaniu kodu).
 - [x] spec 002: Napisz i doprecyzuj `specs/002-wyszukiwanie/spec.md` oraz `plan.md`
 - [x] zadanie 7: Wyszukiwanie po frazie w tytule i treści (`[s] szukaj`) (002 kryterium 1) ✅
 - [x] zadanie 8: Wyszukiwanie niezależne od wielkości liter (002 kryterium 2) ✅
-- [ ] zadanie 9: Komunikat o braku wyników dla nieistniejącej frazy (002 kryterium 3)
+- [x] zadanie 9: Komunikat o braku wyników dla nieistniejącej frazy (002 kryterium 3) ✅
 - [ ] zadanie 10: Pusta fraza wyszukiwania zwraca pełną listę notatek (002 kryterium 4)
 
 ## Dokumentacja końcowa
