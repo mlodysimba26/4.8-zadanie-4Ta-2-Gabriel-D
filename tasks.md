@@ -14,7 +14,7 @@ Zadania odhaczane po weryfikacji (nie po napisaniu kodu).
 - [x] zadanie 2: Blokada zapisu przy pustym tytule / samych spacjach (kryterium 2) ✅
 - [x] zadanie 3: Odwrócona chronologia — najnowszy wpis na początku pliku (kryterium 3) ✅
 - [x] zadanie 4: Poprawna obsługa polskich znaków diakrytycznych UTF-8 (kryterium 4) ✅
-- [ ] zadanie 5 (poprawka): Automatyczne wczytanie i pokazanie listy przy starcie programu (kryterium 5)
+- [x] zadanie 5 (poprawka): Automatyczne wczytanie i pokazanie listy przy starcie programu (kryterium 5) ✅
 - [ ] zadanie 6 (poprawka): Ponawianie zapisu z zachowaniem wpisanych danych po błędzie I/O (kryterium 6)
 
 ## Moduł 002: Wyszukiwanie notatek (`specs/002-wyszukiwanie/spec.md`)

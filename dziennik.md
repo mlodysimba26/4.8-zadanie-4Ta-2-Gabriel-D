@@ -87,19 +87,25 @@ Polskie litery zachowane w pliku i wyświetlone bez zniekształceń.
 
 ## Kryterium 5 — Trwałość danych po ponownym uruchomieniu ✅
 
-**Dowód (lista notatek po restarcie programu — 4 wcześniej zapisane):**
+**Dowód (lista notatek automatycznie wczytana i wyświetlona od razu przy starcie programu + pomiar czasu < 2 s):**
 
+```powershell
+PS> "q" | .\notatnik\bin\Debug\net9.0\notatnik.exe
+=== Notatnik-v2 (wariant konsolowy) ===
+Plik magazynu: C:\Users\duczynski.gabriel\Documents\4.8-zadanie-4Ta-2-Gabriel-D\notatki.md
+Polecenia: [n] nowa notatka  [l] lista  [q] wyjście
+
+--- 5 notatek (od najnowszej) ---
+  [1] 2026-11-26 08:09 — Finalny test
+  [2] 2026-11-19 09:15 — Zażółć gęślą jaźń
+  [3] 2026-11-19 09:15 — Zazolc gesla jazn
+  [4] 2026-11-19 09:15 — Druga
+  [5] 2026-11-19 09:14 — Pierwsza
+
+> Czas uruchomienia: 207 ms
 ```
-$ echo -e "l\nq" | dotnet run --project notatnik
 
-> --- 4 notatek (od najnowszej) ---
-  [1] 2026-11-19 09:15 — Zażółć gęślą jaźń
-  [2] 2026-11-19 09:15 — Zazolc gesla jazn
-  [3] 2026-11-19 09:15 — Druga
-  [4] 2026-11-19 09:14 — Pierwsza
-```
-
-Program po restarcie odczytał wszystkie 4 notatki w prawidłowej kolejności (od najnowszej).
+Program uruchomił się w 207 ms (< 2 s) i od razu na starcie wyświetlił wszystkie zapisane notatki w kolejności od najnowszej.
 
 ---
 

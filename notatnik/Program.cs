@@ -41,7 +41,7 @@ class NotesStorage
         {
             string line = rawLine.TrimEnd('\r');
 
-            if (line.StartsWith("## ") && line.Contains(" — "))
+            if (line.StartsWith("## ") && (line.Contains(" \u2014 ") || line.Contains(" - ")))
             {
                 if (current != null)
                 {
@@ -104,22 +104,28 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.OutputEncoding = new UTF8Encoding(false);
+        Console.InputEncoding = new UTF8Encoding(false);
+
         string storagePath = Path.Combine(Directory.GetCurrentDirectory(), "notatki.md");
         var storage = new NotesStorage(storagePath);
-
-        Console.OutputEncoding = Encoding.UTF8;
-        Console.InputEncoding = Encoding.UTF8;
 
         Console.WriteLine("=== Notatnik-v2 (wariant konsolowy) ===");
         Console.WriteLine($"Plik magazynu: {storagePath}");
         Console.WriteLine("Polecenia: [n] nowa notatka  [l] lista  [q] wyjście");
         Console.WriteLine();
 
+        ListNotes(storage);
+        Console.WriteLine();
+
         bool running = true;
         while (running)
         {
             Console.Write("> ");
-            string? cmd = Console.ReadLine()?.Trim().ToLower();
+            string? rawCmd = Console.ReadLine();
+            if (rawCmd == null)
+                break;
+            string cmd = rawCmd.Trim('\uFEFF', ' ', '\t', '\r', '\n').ToLower();
 
             switch (cmd)
             {
@@ -145,7 +151,10 @@ class Program
         while (true)
         {
             Console.Write("Tytuł notatki: ");
-            title = Console.ReadLine() ?? "";
+            string? rawTitle = Console.ReadLine();
+            if (rawTitle == null)
+                return;
+            title = rawTitle;
             if (!string.IsNullOrWhiteSpace(title))
                 break;
             Console.WriteLine("[Błąd] Tytuł nie może być pusty ani składać się z samych spacji. Podaj tytuł.");
