@@ -95,6 +95,21 @@ class NotesStorage
         string combined = newBlock + existing;
         File.WriteAllText(_filePath, combined, Encoding.UTF8);
     }
+
+    public List<NoteModel> SearchNotes(string query)
+    {
+        var all = LoadNotes();
+        var results = new List<NoteModel>();
+        foreach (var note in all)
+        {
+            if (note.DisplayHeader.Contains(query, StringComparison.Ordinal) ||
+                note.Content.Contains(query, StringComparison.Ordinal))
+            {
+                results.Add(note);
+            }
+        }
+        return results;
+    }
 }
 
 // ============================================================
@@ -112,7 +127,7 @@ class Program
 
         Console.WriteLine("=== Notatnik-v2 (wariant konsolowy) ===");
         Console.WriteLine($"Plik magazynu: {storagePath}");
-        Console.WriteLine("Polecenia: [n] nowa notatka  [l] lista  [q] wyjście");
+        Console.WriteLine("Polecenia: [n] nowa notatka  [l] lista  [s] szukaj  [q] wyjście");
         Console.WriteLine();
 
         ListNotes(storage);
@@ -135,11 +150,14 @@ class Program
                 case "l":
                     ListNotes(storage);
                     break;
+                case "s":
+                    SearchNotesCommand(storage);
+                    break;
                 case "q":
                     running = false;
                     break;
                 default:
-                    Console.WriteLine("Nieznane polecenie. Użyj: n, l, q");
+                    Console.WriteLine("Nieznane polecenie. Użyj: n, l, s, q");
                     break;
             }
         }
@@ -218,6 +236,29 @@ class Program
         catch (Exception ex)
         {
             Console.WriteLine($"[Błąd odczytu] {ex.Message}");
+        }
+    }
+
+    static void SearchNotesCommand(NotesStorage storage)
+    {
+        Console.Write("Szukana fraza: ");
+        string? rawQuery = Console.ReadLine();
+        if (rawQuery == null)
+            return;
+        string query = rawQuery.Trim('\uFEFF');
+
+        try
+        {
+            var results = storage.SearchNotes(query);
+            Console.WriteLine($"--- Wyniki wyszukiwania ({results.Count}) ---");
+            for (int i = 0; i < results.Count; i++)
+            {
+                Console.WriteLine($"  [{i + 1}] {results[i].DisplayHeader}");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[Błąd wyszukiwania] {ex.Message}");
         }
     }
 }

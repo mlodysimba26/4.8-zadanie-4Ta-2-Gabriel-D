@@ -134,3 +134,23 @@ W sekcji 3 „Co robi" specyfikacja (wersja z 4.3) opisywała „jednoekranowy i
 Drugie miejsce błędu: sekcja 6 „Do ustalenia" używała nazw API (`File.Replace`, `.bak`) zamiast pojęć domenowych (`zapis atomowy`, `kopia zapasowa`). To zidentyfikował już recenzent w `przeglad.md` z 4.3.
 
 **Co napiszę inaczej następnym razem:** kryteria akceptacji napiszę w formie scenariuszy wejście→wyjście, które nie wspominają technologii. Zamiast „przycisk IsEnabled = false" — „operacja zapisu jest zablokowana". Zamiast „ListBox na górze" — „nowy wpis pojawia się na pierwszym miejscu listy". Sekcja „Czego nie robi" i sekcja „Do ustalenia" nie będą zawierać nazw metod ani rozszerzeń plików.
+
+---
+
+# Moduł 002: Wyszukiwanie notatek
+
+## 002 — Kryterium 1: Wyniki dla istniejącej frazy (tytuł i treść) ✅
+
+**Dowód (wyszukanie frazy `zakup` z tytułu oraz `mleko` z treści po dodaniu „Lista zakupów" i „Spotkanie"):**
+
+```powershell
+PS> "s`nzakup`nq" | .\notatnik\bin\Debug\net9.0\notatnik.exe
+> Szukana fraza: --- Wyniki wyszukiwania (1) ---
+  [1] 2026-11-26 08:24 — Lista zakupów
+
+PS> "s`nmleko`nq" | .\notatnik\bin\Debug\net9.0\notatnik.exe
+> Szukana fraza: --- Wyniki wyszukiwania (1) ---
+  [1] 2026-11-26 08:24 — Lista zakupów
+```
+
+Zwrócona została wyłącznie notatka pasująca do frazy (zarówno po tytule, jak i po treści).
