@@ -102,8 +102,8 @@ class NotesStorage
         var results = new List<NoteModel>();
         foreach (var note in all)
         {
-            if (note.DisplayHeader.Contains(query, StringComparison.Ordinal) ||
-                note.Content.Contains(query, StringComparison.Ordinal))
+            if (note.DisplayHeader.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                note.Content.Contains(query, StringComparison.OrdinalIgnoreCase))
             {
                 results.Add(note);
             }

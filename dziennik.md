@@ -154,3 +154,17 @@ PS> "s`nmleko`nq" | .\notatnik\bin\Debug\net9.0\notatnik.exe
 ```
 
 Zwrócona została wyłącznie notatka pasująca do frazy (zarówno po tytule, jak i po treści).
+
+---
+
+## 002 — Kryterium 2: Wyszukiwanie niezależne od wielkości liter ✅
+
+**Dowód (wyszukanie `ZAKUP` wielkimi literami przeciwko „Lista zakupów"):**
+
+```powershell
+PS> "s`nZAKUP`nq" | .\notatnik\bin\Debug\net9.0\notatnik.exe
+> Szukana fraza: --- Wyniki wyszukiwania (1) ---
+  [1] 2026-11-26 08:24 — Lista zakupów
+```
+
+Dopasowanie wielkości liter jest ignorowane (`StringComparison.OrdinalIgnoreCase`).
