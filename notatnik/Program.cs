@@ -99,6 +99,9 @@ class NotesStorage
     public List<NoteModel> SearchNotes(string query)
     {
         var all = LoadNotes();
+        if (string.IsNullOrWhiteSpace(query))
+            return all;
+
         var results = new List<NoteModel>();
         foreach (var note in all)
         {

@@ -181,3 +181,24 @@ PS> "s`nxyz_nieistniejacy_tekst_123`nq" | .\notatnik\bin\Debug\net9.0\notatnik.e
 ```
 
 Zamiast pustej listy program wyświetla czytelny komunikat po polsku.
+
+---
+
+## 002 — Kryterium 4: Pusta fraza — pełna lista ✅
+
+**Dowód (zatwierdzenie wyszukiwania pustą linią zwraca wszystkie 8 notatek w kolejności od najnowszej):**
+
+```powershell
+PS> "s`n`nq" | .\notatnik\bin\Debug\net9.0\notatnik.exe
+> Szukana fraza: --- Wyniki wyszukiwania (8) ---
+  [1] 2026-11-26 08:24 — Spotkanie
+  [2] 2026-11-26 08:24 — Lista zakupów
+  [3] 2026-11-26 08:22 — Test blokady
+  [4] 2026-11-26 08:09 — Finalny test
+  [5] 2026-11-19 09:15 — Zażółć gęślą jaźń
+  [6] 2026-11-19 09:15 — Zazolc gesla jazn
+  [7] 2026-11-19 09:15 — Druga
+  [8] 2026-11-19 09:14 — Pierwsza
+```
+
+Lista wyników dla pustej frazy jest identyczna z pełną listą wszystkich notatek.
