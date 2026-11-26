@@ -19,11 +19,11 @@ Ten sam użytkownik co w specyfikacji 001-notatnik: osoba pracująca lokalnie, k
 ## 3. Co robi
 
 - Przyjmuje od użytkownika frazę wyszukiwania (jeden lub więcej wyrazów).
-- Przeszukuje plik magazynu — zarówno nagłówki (tytuły i znaczniki czasu), jak i treść notatek.
-- Zwraca listę notatek, w których fraza wyszukiwania wystąpiła (dopasowanie wielkości liter: bez rozróżnienia).
-- Wyświetla wyniki w formacie identycznym z listą wszystkich notatek: znacznik czasu i tytuł, posortowane od najnowszej.
-- Jeśli żadna notatka nie pasuje do frazy, wyświetla komunikat o braku wyników.
-- Pusta fraza wyszukiwania jest traktowana jak brak filtra — zwracana jest pełna lista notatek.
+- Przeszukuje wczytane notatki — zarówno nagłówki (tytuły i znaczniki czasu), jak i treść notatek.
+- Dopasowuje frazę jako ciąg znaków (podciąg) bez rozróżniania wielkości liter.
+- Zwraca i wyświetla listę pasujących notatek w formacie identycznym z listą wszystkich notatek: znacznik czasu i tytuł, posortowane od najnowszej.
+- Jeśli żadna notatka nie pasuje do frazy, wyświetla wyraźny komunikat o braku wyników.
+- Pusta fraza wyszukiwania (lub złożona wyłącznie z białych znaków) jest traktowana jak brak filtra — wyświetlana jest pełna lista notatek.
 
 ---
 
@@ -32,7 +32,7 @@ Ten sam użytkownik co w specyfikacji 001-notatnik: osoba pracująca lokalnie, k
 - Nie obsługuje wyrażeń regularnych ani operatorów logicznych (`AND`, `OR`, `NOT`).
 - Nie zmienia zawartości pliku magazynu (operacja wyłącznie odczytu).
 - Nie zapamiętuje historii wyszukiwania między sesjami.
-- Nie obsługuje wyszukiwania po zakresie dat.
+- Nie obsługuje wyszukiwania po zakresie dat ani podświetlania trafień w treści.
 
 ---
 
@@ -40,7 +40,7 @@ Ten sam użytkownik co w specyfikacji 001-notatnik: osoba pracująca lokalnie, k
 
 ### Kryterium 1: Wyniki dla istniejącej frazy
 - **Sytuacja:** Plik magazynu zawiera notatki, przynajmniej jedna z nich zawiera frazę „zakupy" w tytule lub treści.
-- **Wynik:** Program wyświetla listę wszystkich notatek pasujących do frazy „zakupy", każda z znacznikiem czasu i tytułem.
+- **Wynik:** Program wyświetla listę wszystkich notatek pasujących do frazy „zakupy", każda ze znacznikiem czasu i tytułem.
 - **Sposób sprawdzenia:** Dodaj notatkę z tytułem „Lista zakupów" i notatkę bez słowa „zakupy". Uruchom wyszukiwanie frazy „zakupy". Zweryfikuj, że wynik zawiera tylko pierwszą notatkę.
 
 ### Kryterium 2: Wyszukiwanie niezależne od wielkości liter
@@ -60,8 +60,8 @@ Ten sam użytkownik co w specyfikacji 001-notatnik: osoba pracująca lokalnie, k
 
 ---
 
-## 6. Do ustalenia
+## 6. Ustalenia (rozstrzygnięte przed implementacją)
 
-- **Wyszukiwanie wielowyrazowe:** Czy fraza „plan na jutro" jest wyszukiwana jako cały ciąg znaków (dopasowanie dokładne), czy jako zbiór niezależnych słów (każde słowo osobno)?
-- **Podświetlanie trafień:** Czy w wynikach wyszukiwania należy wyróżnić pasujący fragment tekstu, czy wystarczy wylistować tytuły pasujących notatek?
-- **Wydajność przy dużym pliku:** Czy wyszukiwanie powinno obsługiwać pliki magazynu liczące tysiące notatek bez zauważalnego opóźnienia (np. poniżej 1 sekundy)?
+- **Wyszukiwanie wielowyrazowe:** Fraza jest wyszukiwana jako dokładny podciąg znaków (bez dzielenia na niezależne słowa), bez rozróżniania wielkości liter.
+- **Podświetlanie trafień:** W wariancie konsolowym wyniki mają ten sam format co lista notatek (znacznik czasu i tytuł), bez podświetlania fragmentów.
+- **Wydajność przy dużym pliku:** Przeszukiwanie w pamięci odbywa się po wczytaniu pliku z dysku i mieści się w budżecie czasu odpowiedzi aplikacji.
