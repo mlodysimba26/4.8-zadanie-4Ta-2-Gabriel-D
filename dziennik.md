@@ -111,18 +111,19 @@ Program uruchomił się w 207 ms (< 2 s) i od razu na starcie wyświetlił wszys
 
 ## Kryterium 6 — Bezpieczeństwo zapisu przy błędzie I/O ✅
 
-**Dowód (plik z atrybutem tylko do odczytu):**
+**Dowód (plik z atrybutem tylko do odczytu, zachowanie danych i ponowienie zapisu po zdjęciu blokady):**
 
-```
-$ attrib +r notatki.md
-$ echo -e "n\nTest blokady\nTresc\n\nq" | dotnet run --project notatnik
-
+```powershell
+PS> attrib +r notatki.md
+PS> .\notatnik\bin\Debug\net9.0\notatnik.exe
 > Tytuł notatki: Treść notatki (zakończ pustą linią):
-[Błąd dostępu] Access to the path '...\notatki.md' is denied.
-[Dane zachowane — podaj polecenie ponownie po usunięciu blokady]
+[Błąd dostępu] Access to the path 'C:\Users\duczynski.gabriel\Documents\4.8-zadanie-4Ta-2-Gabriel-D\notatki.md' is denied.
+[Dane zachowane] Tytuł: "Test blokady" | Treść: 15 zn.
+Ponowić zapis tych samych danych? [t/n]: # po wykonaniu attrib -r notatki.md i wpisaniu "t":
+[OK] Zapisano: 2026-11-26 08:22 — Test blokady
 ```
 
-Program nie uległ awarii, wyświetlił komunikat w języku polskim, dane w polach nie zostały utracone.
+Program nie uległ awarii, wyświetlił komunikat po polsku, zachował tytuł i treść w pamięci i po zdjęciu blokady zapisał notatkę bez ponownego wpisywania.
 
 ---
 

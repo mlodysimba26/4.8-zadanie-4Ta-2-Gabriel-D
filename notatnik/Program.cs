@@ -178,20 +178,24 @@ class Program
             Content = content
         };
 
-        try
+        while (true)
         {
-            storage.SaveNote(note);
-            Console.WriteLine($"[OK] Zapisano: {note.DisplayHeader}");
-        }
-        catch (IOException ex)
-        {
-            Console.WriteLine($"[Błąd zapisu] {ex.Message}");
-            Console.WriteLine("[Dane zachowane — podaj polecenie ponownie po usunięciu blokady]");
-        }
-        catch (UnauthorizedAccessException ex)
-        {
-            Console.WriteLine($"[Błąd dostępu] {ex.Message}");
-            Console.WriteLine("[Dane zachowane — podaj polecenie ponownie po usunięciu blokady]");
+            try
+            {
+                storage.SaveNote(note);
+                Console.WriteLine($"[OK] Zapisano: {note.DisplayHeader}");
+                break;
+            }
+            catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
+            {
+                string label = ex is UnauthorizedAccessException ? "Błąd dostępu" : "Błąd zapisu";
+                Console.WriteLine($"[{label}] {ex.Message}");
+                Console.WriteLine($"[Dane zachowane] Tytuł: \"{note.Title}\" | Treść: {note.Content.Length} zn.");
+                Console.Write("Ponowić zapis tych samych danych? [t/n]: ");
+                string? retry = Console.ReadLine()?.Trim().ToLower();
+                if (retry != "t")
+                    break;
+            }
         }
     }
 
